@@ -1,9 +1,0 @@
-id,name,parent
-root,root,
-root.Australia,Australia,root
-root.Asia,Asia,root
-root.Africa,Africa,root
-root.North America,North America,root
-root.South America,South America,root
-root.Europe,Europe,root
-root.Oceania,Oceania,root
