@@ -1,0 +1,154 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+
+  "width": "container",
+  "height": 450,
+
+  "title": {
+    "text": "Top 10 Tourism Countries in Australia",
+    "fontSize": 24,
+    "anchor": "middle"
+  },
+
+  "data": {
+    "url": "data/top_10_countries.csv"
+  },
+
+  "params": [
+    {
+      "name": "selectedType",
+      "value": "Arrival",
+      "bind": {
+        "input": "select",
+        "options": ["Arrival", "Departure"],
+        "name": "Tourism Type: "
+      }
+    },
+
+    {
+      "name": "selectedYear",
+      "value": 2000,
+      "bind": {
+        "input": "range",
+        "min": 2000,
+        "max": 2025,
+        "step": 1,
+        "name": "Year: "
+      }
+    }
+  ],
+
+  "transform": [
+    {
+      "filter": "datum.Type == selectedType"
+    },
+
+    {
+      "filter": "datum.Year == selectedYear"
+    },
+
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "Rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "Count",
+          "order": "descending"
+        }
+      ]
+    },
+
+    {
+      "filter": "datum.Rank <= 10"
+    }
+  ],
+
+  "mark": {
+    "type": "bar",
+    "cornerRadiusEnd": 4
+  },
+
+  "encoding": {
+    "y": {
+      "field": "Country",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null
+    },
+
+    "x": {
+      "field": "Count",
+      "type": "quantitative",
+      "title": "Tourist Count"
+    },
+
+    "color": {
+      "field": "Continent",
+      "type": "nominal",
+      "title": "Continent",
+      "scale": {
+        "domain": [
+          "Asia",
+          "Europe",
+          "Africa",
+          "Oceania",
+          "North America",
+          "South America"
+        ],
+
+        "range": [
+          "#FF6B6B",
+          "#4ECDC4",
+          "#1A535C",
+          "#FFE66D",
+          "#FF9F1C",
+          "#9B5DE5"
+        ]
+      }
+    },
+
+    "tooltip": [
+      {
+        "field": "Country",
+        "type": "nominal"
+      },
+      {
+        "field": "Count",
+        "type": "quantitative",
+        "format": ","
+      },
+      {
+        "field": "Type",
+        "type": "nominal"
+      },
+      {
+        "field": "Year",
+        "type": "quantitative"
+      },
+      {
+        "field": "Continent",
+        "type": "nominal"
+      }
+    ]
+  },
+
+  "config": {
+    "view": {
+      "stroke": null
+    },
+
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 14
+    },
+
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 14
+    }
+  }
+}

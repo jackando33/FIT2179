@@ -1,0 +1,337 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+
+  "width": 600,
+  "height": 500,
+
+  "title": {
+    "text": "Top 10 Tourism Countries in Australia",
+    "fontSize": 24,
+    "anchor": "middle"
+  },
+
+  "signals": [
+    {
+      "name": "selectedType",
+      "value": "Arrival",
+
+      "bind": {
+        "input": "radio",
+        "options": ["Arrival", "Departure"],
+        "name": "Tourism Type: "
+      }
+    },
+
+    {
+      "name": "play",
+      "value": false,
+
+      "bind": {
+        "input": "checkbox",
+        "name": "Play Animation "
+      }
+    },
+
+    {
+      "name": "year",
+      "value": 2000,
+
+      "on": [
+        {
+          "events": {
+            "type": "timer",
+            "throttle": 1200
+          },
+
+          "update": "play ? (year < 2025 ? year + 1 : 2000) : year"
+        }
+      ],
+
+      "bind": {
+        "input": "range",
+        "min": 2000,
+        "max": 2025,
+        "step": 1,
+        "name": "Year: "
+      }
+    }
+  ],
+
+  "data": [
+    {
+      "name": "tourism",
+
+      "url": "data/top_10_countries.csv",
+
+      "format": {
+        "type": "csv",
+
+        "parse": {
+          "Year": "number",
+          "Count": "number"
+        }
+      },
+
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.Type === selectedType"
+        },
+
+        {
+          "type": "filter",
+          "expr": "datum.Year === year"
+        },
+
+        {
+          "type": "collect",
+
+          "sort": {
+            "field": "Count",
+            "order": "descending"
+          }
+        },
+
+        {
+          "type": "window",
+          "ops": ["rank"],
+          "as": ["rank"]
+        },
+
+        {
+          "type": "filter",
+          "expr": "datum.rank <= 10"
+        }
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "xscale",
+
+      "type": "linear",
+
+      "domain": {
+        "data": "tourism",
+        "field": "Count"
+      },
+
+      "range": "width",
+
+      "nice": true,
+      "zero": true
+    },
+
+    {
+      "name": "yscale",
+
+      "type": "band",
+
+      "domain": {
+        "data": "tourism",
+
+        "field": "Country",
+
+        "sort": {
+          "field": "Count",
+          "op": "max",
+          "order": "descending"
+        }
+      },
+
+      "range": "height",
+
+      "padding": 0.15
+    },
+
+    {
+      "name": "color",
+
+      "type": "ordinal",
+
+      "domain": [
+        "Africa",
+        "Asia",
+        "Europe",
+        "North America",
+        "South America",
+        "Oceania"
+      ],
+
+      "range": [
+        "#a6d854",
+        "#fc8d62",
+        "#8da0cb",
+        "#e78ac3",
+        "#ffd92f",
+        "#66c2a5"
+      ]
+    }
+  ],
+
+  "axes": [
+    {
+      "orient": "bottom",
+
+      "scale": "xscale",
+
+      "title": "Tourist Count",
+
+      "format": ",.2s",
+
+      "labelFontSize": 10,
+      "titleFontSize": 14
+    },
+
+    {
+      "orient": "left",
+
+      "scale": "yscale",
+
+      "title": null,
+
+      "labelFontSize": 12
+    }
+  ],
+
+  "legends": [
+    {
+      "fill": "color",
+
+      "title": "Continent",
+
+      "labelFontSize": 10,
+      "titleFontSize": 14,
+      "offset": 60
+    }
+  ],
+
+  "marks": [
+    {
+      "type": "rect",
+
+      "from": {
+        "data": "tourism"
+      },
+
+      "encode": {
+        "enter": {
+          "x": {
+            "value": 0
+          },
+
+          "height": {
+            "scale": "yscale",
+            "band": 1
+          },
+
+          "fill": {
+            "scale": "color",
+            "field": "Continent"
+          },
+
+          "cornerRadiusEnd": {
+            "value": 5
+          }
+        },
+
+        "update": {
+          "x": {
+            "value": 0
+          },
+
+          "x2": {
+            "scale": "xscale",
+            "field": "Count"
+          },
+
+          "y": {
+            "scale": "yscale",
+            "field": "Country"
+          }
+        }
+      }
+    },
+
+    {
+      "type": "text",
+
+      "from": {
+        "data": "tourism"
+      },
+
+      "encode": {
+        "enter": {
+          "baseline": {
+            "value": "middle"
+          },
+
+          "fontSize": {
+            "value": 12
+          },
+
+          "fill": {
+            "value": "#222"
+          }
+        },
+
+        "update": {
+          "y": {
+            "scale": "yscale",
+            "field": "Country",
+            "band": 0.5
+          },
+
+          "x": {
+            "scale": "xscale",
+            "field": "Count",
+            "offset": 8
+          },
+
+          "text": {
+            "signal": "format(datum.Count, ',')"
+          }
+        }
+      }
+    },
+
+    {
+      "type": "text",
+
+      "encode": {
+        "enter": {
+          "fontSize": {
+            "value": 80
+          },
+
+          "fontWeight": {
+            "value": "bold"
+          },
+
+          "fill": {
+            "value": "#e0e0e0"
+          },
+
+          "align": {
+            "value": "right"
+          }
+        },
+
+        "update": {
+          "x": {
+            "signal": "width - 20"
+          },
+
+          "y": {
+            "signal": "height - 10"
+          },
+
+          "text": {
+            "signal": "year"
+          }
+        }
+      }
+    }
+  ]
+}
