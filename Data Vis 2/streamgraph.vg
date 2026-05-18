@@ -1,0 +1,112 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  
+  "width": 600, 
+  "height": 400,
+
+  "title": {
+    "text": "International Tourism in Australia by Continent",
+    "fontSize": 24
+  },
+
+  "data": {"url": "data/stream_graph_no_aus.csv"},
+
+  "mark": "area",
+
+  "params": [
+    {
+      "name": "MetricSelector",
+      "value": "Arrivals",
+      "bind": {
+        "input": "select",
+        "options": ["Arrivals", "Departures"],
+        "name": "Display: "
+      }
+    },
+    {
+      "name": "industry",
+      "select": {"type": "point", "fields": ["Continent"]},
+      "bind": "legend"
+    }
+  ],
+
+  "transform": [
+    {
+      "calculate": "datum[MetricSelector]",
+      "as": "SelectedMetric"
+    }
+  ],
+
+  "encoding": {
+    "x": {
+      "timeUnit": "year", 
+      "field": "Year",
+      "axis": {
+        "domain": false, 
+        "format": "%Y", 
+        "tickSize": 0,
+        "title": "Year",
+        "titleFontSize": 14,
+        "labelFontSize": 10
+      }
+    },
+
+    "y": {
+      "aggregate": "sum",
+      "field": "SelectedMetric",
+      "stack": "center",
+      "type": "quantitative",
+      "axis": {
+        "title": "Total Tourists",
+        "labels": false,
+        "ticks": false,
+        "domain": false,
+        "grid": false,
+        "titleFontSize": 14,
+        "labelFontSize": 10
+      }
+    },
+    
+    "color": {
+      "field":"Continent",
+      "scale": {
+        "domain": [
+          "Africa",
+          "Asia",
+          "Europe",
+          "North America",
+          "South America",
+          "Oceania"],
+        
+        "range": 
+          [
+            "#a6d854",
+            "#fc8d62",
+            "#8da0cb",
+            "#e78ac3",
+            "#ffd92f",
+            "#66c2a5"
+          ]
+      },
+
+      "legend": {
+        "title": "Continent",
+        "titleFontSize": 14,
+        "labelFontSize": 10
+      }
+    },
+
+    "opacity": {
+      "condition": {
+        "param": "industry", 
+        "value": 1
+      },
+      "value": 0.2
+    },
+    "tooltip": [
+      {"field": "Continent"},
+      {"field": "Year", "type": "nominal", "timeUnit": "year", "title": "Year"},
+      {"field": "SelectedMetric", "title": "Tourists", "format": ".2s"}
+    ]
+  }
+}

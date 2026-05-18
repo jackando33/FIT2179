@@ -1,0 +1,500 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+
+  "description": "2025 Tourism Treemap",
+
+  "width": "container",
+  "height": 500,
+
+  "padding": 5,
+
+  "autosize": "pad",
+
+  "title": {
+    "text": "2025 Global Tourism Treemap",
+    "fontSize": 26,
+    "anchor": "middle",
+    "offset": 20
+  },
+
+  "signals": [
+    {
+      "name": "selectedType",
+      "value": "Arrival",
+
+      "bind": {
+        "input": "radio",
+        "options": ["Arrival", "Departure"],
+        "name": "Tourism Type: "
+      }
+    }
+  ],
+
+  "data": [
+    {
+      "name": "tree",
+
+      "url": "data/tree_map_data.csv",
+
+      "format": {
+        "type": "csv",
+
+        "parse": {
+          "id": "number",
+          "parent": "number",
+          "count": "number"
+        }
+      },
+
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "!datum.type || datum.type === selectedType"
+        },
+
+        {
+          "type": "stratify",
+
+          "key": "id",
+
+          "parentKey": "parent"
+        },
+
+        {
+          "type": "treemap",
+
+          "field": "count",
+
+          "sort": {
+            "field": "count",
+            "order": "descending"
+          },
+
+          "round": true,
+
+          "method": "squarify",
+
+          "paddingInner": 2,
+
+          "size": [
+            {
+              "signal": "width - 180"
+            },
+            {
+              "signal": "height"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "nodes",
+
+      "source": "tree",
+
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.children"
+        }
+      ]
+    },
+
+    {
+      "name": "leaves",
+
+      "source": "tree",
+
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "!datum.children"
+        }
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "color",
+
+      "type": "ordinal",
+
+      "domain": [
+        "Asia Arrival",
+        "Europe Arrival",
+        "Oceania Arrival",
+        "North America Arrival",
+        "South America Arrival",
+        "Africa Arrival",
+
+        "Asia Departure",
+        "Europe Departure",
+        "Oceania Departure",
+        "North America Departure",
+        "South America Departure",
+        "Africa Departure"
+      ],
+
+      "range": [
+        "#FF6B6B",
+        "#4ECDC4",
+        "#1A535C",
+        "#FFE66D",
+        "#FF9F1C",
+        "#9B5DE5",
+
+        "#FF6B6B",
+        "#4ECDC4",
+        "#1A535C",
+        "#FFE66D",
+        "#FF9F1C",
+        "#9B5DE5"
+      ]
+    }
+  ],
+
+  "marks": [
+    {
+      "type": "rect",
+
+      "from": {
+        "data": "nodes"
+      },
+
+      "interactive": false,
+
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "name"
+          },
+
+          "stroke": {
+            "value": "white"
+          },
+
+          "strokeWidth": {
+            "value": 2
+          }
+        },
+
+        "update": {
+          "x": {
+            "field": "x0"
+          },
+
+          "y": {
+            "field": "y0"
+          },
+
+          "x2": {
+            "field": "x1"
+          },
+
+          "y2": {
+            "field": "y1"
+          }
+        }
+      }
+    },
+
+    {
+      "type": "rect",
+
+      "from": {
+        "data": "leaves"
+      },
+
+      "encode": {
+        "enter": {
+          "stroke": {
+            "value": "#ffffff"
+          },
+
+          "strokeWidth": {
+            "value": 1
+          },
+
+          "cursor": {
+            "value": "pointer"
+          }
+        },
+
+        "update": {
+          "x": {
+            "field": "x0"
+          },
+
+          "y": {
+            "field": "y0"
+          },
+
+          "x2": {
+            "field": "x1"
+          },
+
+          "y2": {
+            "field": "y1"
+          },
+
+          "fill": {
+            "scale": "color",
+            "field": "parent.name"
+          },
+
+          "tooltip": {
+            "signal": "{'Country': datum.name, 'Tourists': format(datum.count, ',')}"
+          }
+        },
+
+        "hover": {
+          "strokeWidth": {
+            "value": 1
+          }
+        }
+      }
+    },
+
+    {
+      "type": "text",
+
+      "from": {
+        "data": "leaves"
+      },
+
+      "interactive": true,
+
+      "encode": {
+        "enter": {
+          "font": {
+            "value": "Helvetica Neue, Arial"
+          },
+
+          "align": {
+            "value": "center"
+          },
+
+          "baseline": {
+            "value": "middle"
+          },
+
+          "fill": {
+            "value": "white"
+          },
+
+          "fontSize": {
+            "value": 11
+          },
+
+          "fontWeight": {
+            "value": "bold"
+          }
+        },
+
+        "update": {
+          "x": {
+            "signal": "0.5 * (datum.x0 + datum.x1)"
+          },
+
+          "y": {
+            "signal": "0.5 * (datum.y0 + datum.y1)"
+          },
+
+          "text": {
+            "signal": "(datum.x1 - datum.x0 > 60 && datum.y1 - datum.y0 > 25) ? datum.name : ''"
+          },
+
+          "tooltip": {
+            "signal": "{'Country': datum.name, 'Tourists': format(datum.count, ',')}"
+          }
+        }
+      }
+    },
+
+    {
+      "type": "group",
+
+      "encode": {
+        "enter": {
+          "x": {"value": 800},
+          "y": {"value": 80}
+        }
+      },
+
+      "marks": [
+        {
+          "type": "text",
+
+          "encode": {
+            "enter": {
+              "text": {"value": "Continent"},
+              "fontSize": {"value": 16},
+              "fontWeight": {"value": "bold"},
+              "fill": {"value": "black"},
+              "y": {"value": -15}
+            }
+          }
+        },
+
+        {
+          "type": "symbol",
+
+          "encode": {
+            "enter": {
+              "x": {"value": 10},
+              "y": {"value": 10},
+              "size": {"value": 250},
+              "fill": {"value": "#FF6B6B"}
+            }
+          }
+        },
+
+        {
+          "type": "text",
+
+          "encode": {
+            "enter": {
+              "x": {"value": 30},
+              "y": {"value": 10},
+              "baseline": {"value": "middle"},
+              "text": {"value": "Asia"}
+            }
+          }
+        },
+
+        {
+          "type": "symbol",
+
+          "encode": {
+            "enter": {
+              "x": {"value": 10},
+              "y": {"value": 40},
+              "size": {"value": 250},
+              "fill": {"value": "#4ECDC4"}
+            }
+          }
+        },
+
+        {
+          "type": "text",
+
+          "encode": {
+            "enter": {
+              "x": {"value": 30},
+              "y": {"value": 40},
+              "baseline": {"value": "middle"},
+              "text": {"value": "Europe"}
+            }
+          }
+        },
+
+        {
+          "type": "symbol",
+
+          "encode": {
+            "enter": {
+              "x": {"value": 10},
+              "y": {"value": 70},
+              "size": {"value": 250},
+              "fill": {"value": "#1A535C"}
+            }
+          }
+        },
+
+        {
+          "type": "text",
+
+          "encode": {
+            "enter": {
+              "x": {"value": 30},
+              "y": {"value": 70},
+              "baseline": {"value": "middle"},
+              "text": {"value": "Oceania"}
+            }
+          }
+        },
+
+        {
+          "type": "symbol",
+
+          "encode": {
+            "enter": {
+              "x": {"value": 10},
+              "y": {"value": 100},
+              "size": {"value": 250},
+              "fill": {"value": "#FFE66D"}
+            }
+          }
+        },
+
+        {
+          "type": "text",
+
+          "encode": {
+            "enter": {
+              "x": {"value": 30},
+              "y": {"value": 100},
+              "baseline": {"value": "middle"},
+              "text": {"value": "North America"}
+            }
+          }
+        },
+
+        {
+          "type": "symbol",
+
+          "encode": {
+            "enter": {
+              "x": {"value": 10},
+              "y": {"value": 130},
+              "size": {"value": 250},
+              "fill": {"value": "#FF9F1C"}
+            }
+          }
+        },
+
+        {
+          "type": "text",
+
+          "encode": {
+            "enter": {
+              "x": {"value": 30},
+              "y": {"value": 130},
+              "baseline": {"value": "middle"},
+              "text": {"value": "South America"}
+            }
+          }
+        },
+
+        {
+          "type": "symbol",
+
+          "encode": {
+            "enter": {
+              "x": {"value": 10},
+              "y": {"value": 160},
+              "size": {"value": 250},
+              "fill": {"value": "#9B5DE5"}
+            }
+          }
+        },
+
+        {
+          "type": "text",
+
+          "encode": {
+            "enter": {
+              "x": {"value": 30},
+              "y": {"value": 160},
+              "baseline": {"value": "middle"},
+              "text": {"value": "Africa"}
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
