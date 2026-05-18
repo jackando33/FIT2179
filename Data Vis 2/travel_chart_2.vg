@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "width": 600,
+  "height": 300,
+
+  "title": {
+    "text": "International Travel In and Out of Australia since 2000",
+    "fontSize": 24
+  },
+
+  "data": {
+    "url": "data/travel_over_time.csv"
+  },
+
+  "transform": [
+    {
+      "fold": ["arrivals", "departures"],
+      "as": ["Type", "Passengers"]
+    },
+
+    {
+      "calculate": "datum.Type == 'arrivals' ? 'Arrivals' : 'Departures'",
+      "as": "TypeLabel"
+    }
+  ],
+
+  "params": [
+    {
+      "name": "selectLine",
+
+      "select": {
+        "type": "point",
+        "fields": ["TypeLabel"]
+      },
+
+      "bind": "legend"
+    }
+  ],
+
+  "mark": {
+    "type": "line",
+    "strokeWidth": 2
+  },
+
+  "encoding": {
+    "x": {
+      "timeUnit": "yearmonth",
+      "field": "Date",
+      "type": "ordinal",
+      "title": "Year",
+      "axis":{
+        "ticks": false,
+        "titleFontSize": 14,
+        "labelFontSize": 10
+      }
+    },
+
+    "y": {
+      "field": "Passengers",
+      "type": "quantitative",
+      "title": "Tourists",
+      "axis": {
+        "titleFontSize": 14,
+        "labelFontSize": 10
+      }
+    },
+
+    "color": {
+      "field": "TypeLabel",
+      "type": "nominal",
+
+      "scale": {
+        "domain": ["Arrivals", "Departures"],
+        "range": ["#1f77b4", "#d62728"]
+      },
+
+      "legend": {
+        "title": "Travel Type",
+        "titleFontSize": 14,
+        "labelFontSize": 10
+      }
+    },
+
+    "opacity": {
+      "condition": {
+        "param": "selectLine",
+        "value": 1
+      },
+
+      "value": 0.3
+    },
+
+    "tooltip": [
+      {
+        "timeUnit": "yearmonth",
+        "field": "Date",
+        "type": "ordinal",
+        "title": "Date"
+      },
+
+      {
+        "field": "TypeLabel",
+        "type": "nominal",
+        "title": "Travel Type"
+      },
+
+      {
+        "field": "Passengers",
+        "type": "quantitative",
+        "title": "Tourists",
+        "format": ".2s"
+      }
+    ]
+  }
+}

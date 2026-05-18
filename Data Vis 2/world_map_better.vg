@@ -1,0 +1,209 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "title": {
+    "text": "International Tourism Rate by Country",
+    "fontSize": 24,
+    "subtitle": "Arrivals and departures per 100,000 residents",
+    "subtitleFontSize": 14
+  },
+
+  "width": 600,
+  "height": 400,
+
+  "params": [
+    {
+      "name": "Year_selection",
+      "value": 2025,
+      "bind": {
+        "input": "range",
+        "min": 2000,
+        "max": 2025,
+        "step": 1,
+        "name": "Year: "
+      }
+    },
+
+    {
+      "name": "Metric_selection",
+      "value": "Arrivals",
+      "bind": {
+        "input": "select",
+        "options": ["Arrivals", "Departures"],
+        "name": "Metric: "
+      }
+    }
+  ],
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+    "format": {
+      "type": "topojson",
+      "feature": "ne_110m_admin_0_countries"
+    }
+  },
+
+  "projection": {
+    "type": "equalEarth"
+  },
+
+  "layer": [
+
+    {
+      "transform": [
+        {
+          "calculate": "'Data is not available in ' + datum.properties.NAME",
+          "as": "note"
+        }
+      ],
+
+      "mark": {
+        "type": "geoshape",
+        "fill": "lightgray",
+        "stroke": "white"
+      },
+
+      "encoding": {
+        "tooltip": {
+          "field": "note"
+        }
+      }
+    },
+
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "oceans"
+        }
+      },
+
+      "mark": {
+        "type": "geoshape",
+        "fill": "skyblue"
+      }
+    },
+
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/WorldMapWithGraticules.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_110m_graticules_30"
+        }
+      },
+
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "lightgray"
+      }
+    },
+
+    {
+      "data": {
+        "url": "data/world_choropleth.csv"
+      },
+
+      "transform": [
+
+        {
+          "lookup": "Country",
+
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+
+              "format": {
+                "type": "topojson",
+                "feature": "ne_110m_admin_0_countries"
+              }
+            },
+
+            "key": "properties.NAME"
+          },
+
+          "as": "geo"
+        },
+
+        {
+          "filter": "datum.Year == Year_selection"
+        },
+
+        {
+          "calculate": "datum.Arrivals / datum.Population * 100000",
+          "as": "Arrivals per 100k population"
+        },
+
+        {
+          "calculate": "datum.Departures / datum.Population * 100000",
+          "as": "Departures per 100k population"
+        },
+
+        {
+          "calculate": "Metric_selection == 'Arrivals' ? datum['Arrivals per 100k population'] : datum['Departures per 100k population']",
+          "as": "Selected Metric"
+        }
+      ],
+
+      "mark": {
+        "type": "geoshape",
+        "stroke": "white"
+      },
+
+      "encoding": {
+
+        "shape": {
+          "field": "geo",
+          "type": "geojson"
+        },
+
+        "color": {
+          "field": "Selected Metric",
+          "type": "quantitative",
+
+          "scale": {
+            "type": "threshold",
+            "domain": [10, 100, 300, 1000],
+            "scheme": "purples"
+          },
+          "legend": {
+            "title": "Tourists per 100k Population",
+
+            "titleFontSize": 14,
+            "labelFontSize": 10
+          }
+        },
+
+        "tooltip": [
+
+          {
+            "field": "Country",
+            "type": "nominal",
+            "title": "Country"
+          },
+
+          {
+            "field": "Year",
+            "type": "quantitative"
+          },
+
+          {
+            "field": "Arrivals per 100k population",
+            "type": "quantitative",
+            "format": ".2s"
+          },
+
+          {
+            "field": "Departures per 100k population",
+            "type": "quantitative",
+            "format": ".2s"
+          }
+        ]
+      }
+    }
+  ],
+
+  "config": {}
+}
