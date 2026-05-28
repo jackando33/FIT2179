@@ -1,0 +1,432 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+
+  "data": {
+    "url": "data/travel_over_time.csv"
+  },
+
+  "transform": [
+    {
+      "fold": ["arrivals", "departures"],
+      "as": ["Type", "Passengers"]
+    },
+
+    {
+      "calculate": "datum.Type == 'arrivals' ? 'Arrivals' : 'Departures'",
+      "as": "TypeLabel"
+    }
+  ],
+
+  "vconcat": [
+    {
+      "width": "container",
+      "height": 300,
+
+      "title": {
+        "text": "International Travel In and Out of Australia since 2000",
+        "fontSize": 24
+      },
+
+      "layer": [
+        {
+          "transform": [
+            {
+              "filter": {"param": "time_brush"}
+            }
+          ],
+
+          "mark": {
+            "type": "line",
+            "strokeWidth": 2
+          },
+
+          "encoding": {
+            "x": {
+              "timeUnit": "yearmonth",
+              "field": "Date",
+              "type": "temporal",
+              "title": "Year",
+
+              "scale": {
+                "domain": {
+                  "param": "time_brush"
+                }
+              },
+
+              "axis": {
+                "ticks": false,
+                "titleFontSize": 14,
+                "labelFontSize": 10
+              }
+            },
+
+            "y": {
+              "field": "Passengers",
+              "type": "quantitative",
+              "title": "Tourists",
+
+              "scale": {
+                "domain": [0, 2620000]
+              },
+
+              "axis": {
+                "titleFontSize": 14,
+                "labelFontSize": 10
+              }
+            },
+
+            "color": {
+              "field": "TypeLabel",
+              "type": "nominal",
+
+              "scale": {
+                "domain": ["Arrivals", "Departures"],
+                "range": ["#1f77b4", "#d62728"]
+              },
+
+              "legend": {
+                "title": "Travel Type",
+                "titleFontSize": 14,
+                "labelFontSize": 10,
+                "offset": -3
+              }
+            },
+
+            "opacity": {
+              "condition": {
+                "param": "selectLine",
+                "value": 1
+              },
+              "value": 0.3
+            },
+
+            "tooltip": [
+              {
+                "timeUnit": "yearmonth",
+                "field": "Date",
+                "type": "temporal",
+                "title": "Date"
+              },
+              {
+                "field": "TypeLabel",
+                "type": "nominal",
+                "title": "Travel Type"
+              },
+              {
+                "field": "Passengers",
+                "type": "quantitative",
+                "title": "Tourists",
+                "format": ","
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {"event": "COVID Begins", "date": "2020-03-01"},
+              {"event": "Borders Reopen", "date": "2022-02-01"}
+            ]
+          },
+
+          "mark": {
+            "type": "rule",
+            "strokeDash": [6,4],
+            "strokeWidth": 2,
+            "color": "black"
+          },
+
+          "encoding": {
+            "x": {
+              "field": "date",
+              "type": "temporal",
+
+              "scale": {
+                "domain": {
+                  "param": "time_brush"
+                }
+              }
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {"event": "COVID Begins", "date": "2020-03-01"}
+            ]
+          },
+
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "fontSize": 11,
+            "dx": -45,
+            "dy": 65,
+            "angle": -30
+          },
+
+          "encoding": {
+            "x": {
+              "field": "date",
+              "type": "temporal",
+
+              "scale": {
+                "domain": {
+                  "param": "time_brush"
+                }
+              }
+            },
+
+            "y": {
+              "value": 170
+            },
+
+            "text": {
+              "field": "event"
+            }
+          }
+        },
+
+        {
+          "data": {
+            "values": [
+              {
+                "event": "Borders Reopen",
+                "date": "2022-02-01"
+              }
+            ]
+          },
+
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "fontSize": 11,
+            "dx": 35,
+            "dy": 95,
+            "angle": -30
+          },
+
+          "encoding": {
+            "x": {
+              "field": "date",
+              "type": "temporal",
+
+              "scale": {
+                "domain": {
+                  "param": "time_brush"
+                }
+              }
+            },
+
+            "y": {
+              "value": 170
+            },
+
+            "text": {
+              "field": "event"
+            }
+          }
+        },
+
+        {
+          "transform": [
+            {
+              "filter": {
+                "param": "time_brush"
+              }
+            },
+
+            {
+              "aggregate": [
+                {
+                  "op": "sum",
+                  "field": "Passengers",
+                  "as": "TotalPassengers"
+                }
+              ],
+
+              "groupby": ["Date", "TypeLabel"]
+            },
+
+            {
+              "window": [
+                {
+                  "op": "rank",
+                  "as": "ranking"
+                }
+              ],
+
+              "sort": [
+                {
+                  "field": "TotalPassengers",
+                  "order": "descending"
+                }
+              ]
+            },
+
+            {
+              "filter": "datum.ranking == 1"
+            },
+
+            {
+              "calculate": "'Peak ' + datum.TypeLabel + ': ' + format(datum.TotalPassengers, '.2s')",
+              "as": "label"
+            }
+          ],
+
+          "layer": [
+            {
+              "mark": {
+                "type": "point",
+                "filled": true,
+                "size": 120
+              },
+
+              "encoding": {
+                "x": {
+                  "field": "Date",
+                  "type": "temporal",
+
+                  "scale": {
+                    "domain": {
+                      "param": "time_brush"
+                    }
+                  }
+                },
+
+                "y": {
+                  "field": "TotalPassengers",
+                  "type": "quantitative"
+                },
+
+                "color": {
+                  "field": "TypeLabel",
+                  "type": "nominal",
+
+                  "scale": {
+                    "domain": ["Arrivals", "Departures"],
+                    "range": ["#1f77b4", "#d62728"]
+                  },
+
+                  "legend": null
+                }
+              }
+            },
+
+            {
+              "mark": {
+                "type": "text",
+                "align": "right",
+                "dx": -10,
+                "dy": -10,
+                "fontStyle": "bold",
+                "fontSize": 11
+              },
+
+              "encoding": {
+                "x": {
+                  "field": "Date",
+                  "type": "temporal",
+
+                  "scale": {
+                    "domain": {
+                      "param": "time_brush"
+                    }
+                  }
+                },
+
+                "y": {
+                  "field": "TotalPassengers",
+                  "type": "quantitative"
+                },
+
+                "text": {
+                  "field": "label"
+                },
+
+                "color": {
+                  "field": "TypeLabel",
+                  "type": "nominal",
+
+                  "scale": {
+                    "domain": ["Arrivals", "Departures"],
+                    "range": ["#1f77b4", "#d62728"]
+                  },
+
+                  "legend": null
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "width": "container",
+      "height": 70,
+
+      "title": "Use brush to scroll through time",
+
+      "params": [
+        {
+          "name": "time_brush",
+
+          "select": {
+            "type": "interval",
+            "encodings": ["x"]
+          }
+        },
+
+        {
+          "name": "selectLine",
+
+          "select": {
+            "type": "point",
+            "fields": ["TypeLabel"]
+          },
+
+          "bind": "legend"
+        }
+      ],
+
+      "mark": {
+        "type": "line",
+        "strokeWidth": 1.5
+      },
+
+      "encoding": {
+        "x": {
+          "timeUnit": "yearmonth",
+          "field": "Date",
+          "type": "temporal",
+          "title": "Year"
+        },
+
+        "y": {
+          "field": "Passengers",
+          "type": "quantitative",
+          "title": "Tourists"
+        },
+
+        "color": {
+          "field": "TypeLabel",
+          "type": "nominal",
+
+          "scale": {
+            "domain": ["Arrivals", "Departures"],
+            "range": ["#1f77b4", "#d62728"]
+          },
+
+          "legend": null
+        }
+      }
+    }
+  ],
+
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+
+  "width": 400,
+  "height": 300,
+
+  "title": {
+    "text": "International Travel In and Out of Australia since 2000",
+    "fontSize": 22
+  },
+
+  "data": {
+    "url": "data/travel_over_time_trial.csv"
+  },
+
+  "transform": [
+    {
+      "fold": ["arrivals", "departures"],
+      "as": ["Type", "Passengers"]
+    }
+  ],
+
+  "params": [
+    {
+      "name": "selectLine",
+
+      "select": {
+        "type": "point",
+        "fields": ["Type"]
+      },
+
+      "bind": "legend"
+    }
+  ],
+
+  "mark": {
+    "type": "line",
+    "strokeWidth": 3
+  },
+
+  "encoding": {
+    "x": {
+      "timeUnit": "year",
+      "field": "Date",
+      "type": "ordinal",
+      "title": "Year"
+    },
+
+    "y": {
+      "field": "Passengers",
+      "type": "quantitative",
+      "title": "Passengers"
+    },
+
+    "color": {
+      "field": "Type",
+      "type": "nominal",
+
+      "scale": {
+        "domain": ["arrivals", "departures"],
+        "range": ["#ff7f0e", "#1f77b4"]
+      },
+
+      "legend": {
+        "title": "Travel Type",
+        "labelExpr": "datum.label == 'arrivals' ? 'Arrivals' : 'Departures'"
+      }
+    },
+
+    "opacity": {
+      "condition": {
+        "param": "selectLine",
+        "value": 1
+      },
+
+      "value": 0.15
+    },
+
+    "tooltip": [
+      {
+        "timeUnit": "year",
+        "field": "Date",
+        "type": "ordinal",
+        "title": "Date"
+      },
+
+      {
+        "field": "Type",
+        "type": "nominal",
+        "title": "Travel type"
+      },
+
+      {
+        "field": "Passengers",
+        "type": "quantitative",
+        "format": ".3s"
+      }
+    ]
+  }
+}

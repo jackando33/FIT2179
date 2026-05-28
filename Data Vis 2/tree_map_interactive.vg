@@ -1,0 +1,337 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v6.json",
+
+  "width": 500,
+  "height": 520,
+
+  "autosize": {
+    "type": "fit",
+    "contains": "padding",
+    "resize": true
+  },
+
+  "title": {
+    "text": "2025 Global Tourism Treemap",
+    "fontSize": 24,
+    "subtitle": "Top 70 countries by total tourism to and from Australia, coloured by continent",
+    "subtitleFontSize": 14,
+    "anchor": "middle"
+  },
+
+  "signals": [
+    {
+      "name": "selectedContinent",
+      "value": "Global",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Global",
+          "Africa",
+          "Asia",
+          "Europe",
+          "North America",
+          "South America",
+          "Oceania"
+        ],
+        "name": "Continent: "
+      }
+    }
+  ],
+
+  "data": [
+    {
+      "name": "tree",
+      "url": "data/tree_map_data.csv",
+
+      "format": {
+  "type": "csv",
+  "parse": {
+    "id": "number",
+    "parent": "number",
+    "count": "number",
+    "arrivals": "number",
+    "departures": "number"
+  }
+},
+
+      "transform": [
+        {
+          "type": "formula",
+          "as": "scaledCount",
+          "expr": "sqrt(datum.count)"
+        },
+
+        {
+          "type": "filter",
+          "expr":
+            "selectedContinent === 'Global' || datum.name === selectedContinent || ((datum.parent == 2) && selectedContinent === 'Asia') || ((datum.parent == 3) && selectedContinent === 'Europe') || ((datum.parent == 4) && selectedContinent === 'Oceania') || ((datum.parent == 5) && selectedContinent === 'North America') || ((datum.parent == 6) && selectedContinent === 'South America') || ((datum.parent == 7) && selectedContinent === 'Africa') || datum.id == 1"
+        },
+
+        {
+          "type": "stratify",
+          "key": "id",
+          "parentKey": "parent"
+        },
+
+        {
+          "type": "treemap",
+          "field": "scaledCount",
+
+          "sort": {
+            "field": "count",
+            "order": "descending"
+          },
+
+          "round": true,
+          "method": "binary",
+          "paddingInner": 1,
+
+          "size": [
+            { "signal": "width" },
+            { "signal": "height - 45" }
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "nodes",
+      "source": "tree",
+
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.children && datum.depth == 1"
+        }
+      ]
+    },
+
+    {
+      "name": "leaves",
+      "source": "tree",
+
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "!datum.children"
+        }
+      ]
+    },
+
+    {
+      "name": "legend",
+      "values": [
+        { "continent": "Africa", "color": "#a6d854", "x": 10 },
+        { "continent": "Asia", "color": "#fc8d62", "x": 80 },
+        { "continent": "Europe", "color": "#8da0cb", "x": 145 },
+        { "continent": "North America", "color": "#e78ac3", "x": 220 },
+        { "continent": "South America", "color": "#ffd92f", "x": 325 },
+        { "continent": "Oceania", "color": "#66c2a5", "x": 430 }
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+
+      "domain": [
+        "Asia",
+        "Europe",
+        "Oceania",
+        "North America",
+        "South America",
+        "Africa"
+      ],
+
+      "range": [
+        "#fc8d62",
+        "#8da0cb",
+        "#66c2a5",
+        "#e78ac3",
+        "#ffd92f",
+        "#a6d854"
+      ]
+    }
+  ],
+
+  "marks": [
+    {
+      "type": "rect",
+
+      "from": { "data": "nodes" },
+
+      "interactive": false,
+
+      "encode": {
+        "enter": {
+          "fill": {
+            "scale": "color",
+            "field": "name"
+          },
+
+          "stroke": { "value": "white" },
+          "strokeWidth": { "value": 1 }
+        },
+
+        "update": {
+          "x": { "field": "x0" },
+          "y": { "field": "y0" },
+          "x2": { "field": "x1" },
+          "y2": { "field": "y1" }
+        }
+      }
+    },
+
+    {
+      "type": "rect",
+
+      "from": { "data": "leaves" },
+
+      "encode": {
+        "enter": {
+          "stroke": { "value": "#ffffff" },
+          "strokeWidth": { "value": 1 }
+        },
+
+        "update": {
+          "x": { "field": "x0" },
+          "y": { "field": "y0" },
+          "x2": { "field": "x1" },
+          "y2": { "field": "y1" },
+
+          "fill": {
+            "scale": "color",
+            "field": "parent.name"
+          },
+
+          "tooltip": {
+            "signal":
+              "{'Country': datum.name, 'Total': format(datum.count,'.2s'), 'Arrivals': format(datum.arrivals,'.3s'), 'Departures': format(datum.departures,'.3s')}"
+          }
+        }
+      }
+    },
+
+    {
+  "type": "text",
+
+  "from": { "data": "leaves" },
+
+  "interactive": true,
+
+  "encode": {
+    "enter": {
+      "font": {
+        "value": "Helvetica Neue, Arial"
+      },
+
+      "align": {
+        "value": "left"
+      },
+
+      "baseline": {
+        "value": "top"
+      },
+
+      "fill": {
+        "value": "white"
+      },
+
+      "fontWeight": {
+        "value": "bold"
+      },
+
+      "lineBreak": {
+        "value": "\n"
+      }
+    },
+
+    "update": {
+      "x": {
+        "signal": "datum.x0 + 6"
+      },
+
+      "y": {
+        "signal": "datum.y0 + 6"
+      },
+
+      "fontSize": {
+        "signal": "clamp(sqrt((datum.x1-datum.x0)*(datum.y1-datum.y0))/8,8,20)"
+      },
+
+      "text": {
+        "signal":
+          "selectedContinent !== 'Global' ? (replace(datum.name,' ','\\n') + '\\n' + format(datum.count,'.2s')) : ((datum.x1-datum.x0 > 55 && datum.y1-datum.y0 > 22) ? (replace(datum.name,' ','\\n') + '\\n' + format(datum.count,'.2s')) : '')"
+      },
+
+      "tooltip": {
+        "signal":
+          "{'Country': datum.name, 'Total': format(datum.count,'.2s'), 'Arrivals': format(datum.arrivals,'.3s'), 'Departures': format(datum.departures,'.3s')}"
+      }
+    }
+  }
+},
+
+    {
+      "type": "rect",
+
+      "from": { "data": "legend" },
+
+      "encode": {
+        "enter": {
+          "x": { "field": "x" },
+          "x2": { "signal": "datum.x + 12" },
+
+          "y": { "signal": "height - 18" },
+          "y2": { "signal": "height - 6" },
+
+          "fill": { "field": "color" },
+
+          "stroke": {
+            "value": "white"
+          }
+        }
+      }
+    },
+
+    {
+      "type": "text",
+
+      "from": { "data": "legend" },
+
+      "encode": {
+        "enter": {
+          "x": {
+            "signal": "datum.x + 16"
+          },
+
+          "y": {
+            "signal": "height - 12"
+          },
+
+          "text": {
+            "field": "continent"
+          },
+
+          "align": {
+            "value": "left"
+          },
+
+          "baseline": {
+            "value": "middle"
+          },
+
+          "fontSize": {
+            "value": 10
+          },
+
+          "fill": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ]
+}
