@@ -1,0 +1,521 @@
+Year,Country,Count,Type,Continent
+2000,New Zealand,993540,Arrival,Oceania
+2000,United Kingdom,864640,Arrival,Europe
+2000,Japan,741180,Arrival,Asia
+2000,United States,488670,Arrival,North America
+2000,Singapore,229500,Arrival,Asia
+2000,Malaysia,201750,Arrival,Asia
+2000,Germany,171570,Arrival,Europe
+2000,South Korea,168130,Arrival,Asia
+2000,China,151070,Arrival,Asia
+2000,Taiwan,144630,Arrival,Asia
+2001,New Zealand,1004590,Arrival,Oceania
+2001,United Kingdom,891930,Arrival,Europe
+2001,Japan,699170,Arrival,Asia
+2001,United States,456540,Arrival,North America
+2001,Singapore,221470,Arrival,Asia
+2001,Malaysia,199470,Arrival,Asia
+2001,China,198350,Arrival,Asia
+2001,South Korea,190940,Arrival,Asia
+2001,Germany,179530,Arrival,Europe
+2001,Indonesia,124720,Arrival,Asia
+2002,New Zealand,961090,Arrival,Oceania
+2002,United Kingdom,884750,Arrival,Europe
+2002,Japan,741970,Arrival,Asia
+2002,United States,441290,Arrival,North America
+2002,China,241930,Arrival,Asia
+2002,Singapore,209880,Arrival,Asia
+2002,Malaysia,209220,Arrival,Asia
+2002,South Korea,208540,Arrival,Asia
+2002,Germany,166770,Arrival,Europe
+2002,Indonesia,120990,Arrival,Asia
+2003,New Zealand,1016030,Arrival,Oceania
+2003,United Kingdom,899980,Arrival,Europe
+2003,Japan,643700,Arrival,Asia
+2003,United States,433150,Arrival,North America
+2003,China,226930,Arrival,Asia
+2003,South Korea,225880,Arrival,Asia
+2003,Malaysia,207070,Arrival,Asia
+2003,Singapore,193730,Arrival,Asia
+2003,Germany,166170,Arrival,Europe
+2003,Indonesia,124960,Arrival,Asia
+2004,New Zealand,1243520,Arrival,Oceania
+2004,United Kingdom,920770,Arrival,Europe
+2004,Japan,725410,Arrival,Asia
+2004,United States,445410,Arrival,North America
+2004,China,310010,Arrival,Asia
+2004,South Korea,234740,Arrival,Asia
+2004,Malaysia,227210,Arrival,Asia
+2004,Singapore,202730,Arrival,Asia
+2004,Germany,168610,Arrival,Europe
+2004,Indonesia,119630,Arrival,Asia
+2005,New Zealand,1316060,Arrival,Oceania
+2005,United Kingdom,964730,Arrival,Europe
+2005,Japan,703490,Arrival,Asia
+2005,United States,459990,Arrival,North America
+2005,China,348250,Arrival,Asia
+2005,South Korea,277620,Arrival,Asia
+2005,Malaysia,229100,Arrival,Asia
+2005,Singapore,208440,Arrival,Asia
+2005,Germany,179840,Arrival,Europe
+2005,India,133090,Arrival,Asia
+2006,New Zealand,1296990,Arrival,Oceania
+2006,United Kingdom,988940,Arrival,Europe
+2006,Japan,670640,Arrival,Asia
+2006,United States,471410,Arrival,North America
+2006,China,378400,Arrival,Asia
+2006,South Korea,292620,Arrival,Asia
+2006,Malaysia,214760,Arrival,Asia
+2006,Singapore,185700,Arrival,Asia
+2006,Germany,183390,Arrival,Europe
+2006,India,162220,Arrival,Asia
+2007,New Zealand,1392250,Arrival,Oceania
+2007,United Kingdom,959160,Arrival,Europe
+2007,Japan,594440,Arrival,Asia
+2007,United States,478410,Arrival,North America
+2007,China,444570,Arrival,Asia
+2007,South Korea,287050,Arrival,Asia
+2007,Malaysia,226530,Arrival,Asia
+2007,India,195070,Arrival,Asia
+2007,Singapore,191700,Arrival,Asia
+2007,Germany,191220,Arrival,Europe
+2008,New Zealand,1405100,Arrival,Oceania
+2008,United Kingdom,948890,Arrival,Europe
+2008,Japan,481600,Arrival,Asia
+2008,United States,480200,Arrival,North America
+2008,China,463440,Arrival,Asia
+2008,South Korea,255400,Arrival,Asia
+2008,India,246520,Arrival,Asia
+2008,Malaysia,246210,Arrival,Asia
+2008,Germany,204470,Arrival,Europe
+2008,Singapore,193690,Arrival,Asia
+2009,New Zealand,1424840,Arrival,Oceania
+2009,United Kingdom,935010,Arrival,Europe
+2009,United States,503860,Arrival,North America
+2009,China,493550,Arrival,Asia
+2009,Japan,380300,Arrival,Asia
+2009,Malaysia,296260,Arrival,Asia
+2009,India,266360,Arrival,Asia
+2009,South Korea,219090,Arrival,Asia
+2009,Germany,205950,Arrival,Europe
+2009,Singapore,199270,Arrival,Asia
+2010,New Zealand,1494370,Arrival,Oceania
+2010,United Kingdom,933850,Arrival,Europe
+2010,China,588860,Arrival,Asia
+2010,United States,504040,Arrival,North America
+2010,Japan,427500,Arrival,Asia
+2010,Malaysia,324360,Arrival,Asia
+2010,India,257810,Arrival,Asia
+2010,South Korea,251200,Arrival,Asia
+2010,Singapore,214410,Arrival,Asia
+2010,Germany,209860,Arrival,Europe
+2011,New Zealand,1575020,Arrival,Oceania
+2011,United Kingdom,909180,Arrival,Europe
+2011,China,687370,Arrival,Asia
+2011,United States,494960,Arrival,North America
+2011,Japan,363190,Arrival,Asia
+2011,Malaysia,329690,Arrival,Asia
+2011,India,278570,Arrival,Asia
+2011,South Korea,235110,Arrival,Asia
+2011,Singapore,214140,Arrival,Asia
+2011,Germany,206200,Arrival,Europe
+2012,New Zealand,1661630,Arrival,Oceania
+2012,United Kingdom,910790,Arrival,Europe
+2012,China,792930,Arrival,Asia
+2012,United States,518330,Arrival,North America
+2012,Japan,392770,Arrival,Asia
+2012,Malaysia,356410,Arrival,Asia
+2012,India,315130,Arrival,Asia
+2012,South Korea,236920,Arrival,Asia
+2012,Singapore,236120,Arrival,Asia
+2012,Germany,209600,Arrival,Europe
+2013,New Zealand,1685770,Arrival,Oceania
+2013,United Kingdom,967400,Arrival,Europe
+2013,China,904390,Arrival,Asia
+2013,United States,536210,Arrival,North America
+2013,Malaysia,394860,Arrival,Asia
+2013,Japan,369000,Arrival,Asia
+2013,India,342440,Arrival,Asia
+2013,Singapore,267640,Arrival,Asia
+2013,South Korea,236070,Arrival,Asia
+2013,Germany,218040,Arrival,Europe
+2014,New Zealand,1731940,Arrival,Oceania
+2014,China,1055610,Arrival,Asia
+2014,United Kingdom,940800,Arrival,Europe
+2014,United States,568530,Arrival,North America
+2014,Malaysia,451070,Arrival,Asia
+2014,India,382150,Arrival,Asia
+2014,Japan,374350,Arrival,Asia
+2014,Singapore,294210,Arrival,Asia
+2014,South Korea,240430,Arrival,Asia
+2014,Germany,231360,Arrival,Europe
+2015,New Zealand,1787050,Arrival,Oceania
+2015,China,1273170,Arrival,Asia
+2015,United Kingdom,972740,Arrival,Europe
+2015,United States,604040,Arrival,North America
+2015,Malaysia,473070,Arrival,Asia
+2015,India,427260,Arrival,Asia
+2015,Japan,381480,Arrival,Asia
+2015,Singapore,312490,Arrival,Asia
+2015,South Korea,257550,Arrival,Asia
+2015,Germany,232480,Arrival,Europe
+2016,New Zealand,1841600,Arrival,Oceania
+2016,China,1483850,Arrival,Asia
+2016,United Kingdom,1005360,Arrival,Europe
+2016,United States,671990,Arrival,North America
+2016,Malaysia,538270,Arrival,Asia
+2016,India,470730,Arrival,Asia
+2016,Japan,464580,Arrival,Asia
+2016,Singapore,351630,Arrival,Asia
+2016,South Korea,302480,Arrival,Asia
+2016,Germany,249280,Arrival,Europe
+2017,New Zealand,1873380,Arrival,Oceania
+2017,China,1682400,Arrival,Asia
+2017,United Kingdom,1035960,Arrival,Europe
+2017,United States,713510,Arrival,North America
+2017,Malaysia,539680,Arrival,Asia
+2017,India,538090,Arrival,Asia
+2017,Japan,478060,Arrival,Asia
+2017,Singapore,346570,Arrival,Asia
+2017,South Korea,340230,Arrival,Asia
+2017,Germany,257400,Arrival,Europe
+2018,New Zealand,1892360,Arrival,Oceania
+2018,China,1808660,Arrival,Asia
+2018,United Kingdom,1019550,Arrival,Europe
+2018,United States,779800,Arrival,North America
+2018,India,635940,Arrival,Asia
+2018,Malaysia,525840,Arrival,Asia
+2018,Japan,503770,Arrival,Asia
+2018,Singapore,350810,Arrival,Asia
+2018,South Korea,347260,Arrival,Asia
+2018,Germany,260840,Arrival,Europe
+2019,New Zealand,1939260,Arrival,Oceania
+2019,China,1814350,Arrival,Asia
+2019,United Kingdom,991480,Arrival,Europe
+2019,United States,834340,Arrival,North America
+2019,India,699990,Arrival,Asia
+2019,Japan,523240,Arrival,Asia
+2019,Malaysia,514140,Arrival,Asia
+2019,Singapore,366250,Arrival,Asia
+2019,South Korea,355060,Arrival,Asia
+2019,Indonesia,275760,Arrival,Asia
+2020,New Zealand,414230,Arrival,Oceania
+2020,China,299170,Arrival,Asia
+2020,United Kingdom,261270,Arrival,Europe
+2020,United States,195780,Arrival,North America
+2020,India,190150,Arrival,Asia
+2020,Japan,99170,Arrival,Asia
+2020,Malaysia,83080,Arrival,Asia
+2020,South Korea,70480,Arrival,Asia
+2020,Germany,64410,Arrival,Europe
+2020,Canada,59530,Arrival,North America
+2021,New Zealand,174160,Arrival,Oceania
+2021,India,42400,Arrival,Asia
+2021,United Kingdom,27470,Arrival,Europe
+2021,China,24140,Arrival,Asia
+2021,United States,14610,Arrival,North America
+2021,Philippines,10410,Arrival,Asia
+2021,Singapore,10110,Arrival,Asia
+2021,Pakistan,7480,Arrival,Asia
+2021,Nepal,7100,Arrival,Asia
+2021,Malaysia,6060,Arrival,Asia
+2022,New Zealand,980840,Arrival,Oceania
+2022,India,538670,Arrival,Asia
+2022,United Kingdom,502660,Arrival,Europe
+2022,United States,317550,Arrival,North America
+2022,Singapore,240340,Arrival,Asia
+2022,China,197540,Arrival,Asia
+2022,Malaysia,143300,Arrival,Asia
+2022,Philippines,127400,Arrival,Asia
+2022,Indonesia,123200,Arrival,Asia
+2022,Vietnam,108850,Arrival,Asia
+2023,New Zealand,1720680,Arrival,Oceania
+2023,China,870600,Arrival,Asia
+2023,United Kingdom,754760,Arrival,Europe
+2023,India,732970,Arrival,Asia
+2023,United States,638260,Arrival,North America
+2023,South Korea,342240,Arrival,Asia
+2023,Japan,329400,Arrival,Asia
+2023,Singapore,286740,Arrival,Asia
+2023,Malaysia,279950,Arrival,Asia
+2023,Philippines,243630,Arrival,Asia
+2024,New Zealand,1929060,Arrival,Oceania
+2024,China,1343450,Arrival,Asia
+2024,United Kingdom,825370,Arrival,Europe
+2024,India,792970,Arrival,Asia
+2024,United States,710790,Arrival,North America
+2024,Japan,441720,Arrival,Asia
+2024,South Korea,438430,Arrival,Asia
+2024,Singapore,341150,Arrival,Asia
+2024,Malaysia,320310,Arrival,Asia
+2024,Indonesia,284650,Arrival,Asia
+2025,New Zealand,2049710,Arrival,Oceania
+2025,China,1501850,Arrival,Asia
+2025,United Kingdom,954050,Arrival,Europe
+2025,India,822670,Arrival,Asia
+2025,United States,746180,Arrival,North America
+2025,South Korea,465980,Arrival,Asia
+2025,Japan,464760,Arrival,Asia
+2025,Singapore,366940,Arrival,Asia
+2025,Malaysia,339040,Arrival,Asia
+2025,Indonesia,304230,Arrival,Asia
+2000,New Zealand,945720,Departure,Oceania
+2000,United Kingdom,837650,Departure,Europe
+2000,South Korea,736280,Departure,Asia
+2000,India,491050,Departure,Asia
+2000,Singapore,229430,Departure,Asia
+2000,Malaysia,203020,Departure,Asia
+2000,Germany,176070,Departure,Europe
+2000,Japan,164610,Departure,Asia
+2000,China,146680,Departure,Asia
+2000,Taiwan,144650,Departure,Asia
+2001,New Zealand,983230,Departure,Oceania
+2001,United Kingdom,882230,Departure,Europe
+2001,South Korea,699310,Departure,Asia
+2001,India,456580,Departure,Asia
+2001,Singapore,222580,Departure,Asia
+2001,Malaysia,197740,Departure,Asia
+2001,China,193780,Departure,Asia
+2001,Japan,188900,Departure,Asia
+2001,Germany,177580,Departure,Europe
+2001,Indonesia,126090,Departure,Asia
+2002,New Zealand,954210,Departure,Oceania
+2002,United Kingdom,864090,Departure,Europe
+2002,South Korea,741540,Departure,Asia
+2002,India,444330,Departure,Asia
+2002,China,234340,Departure,Asia
+2002,Japan,211040,Departure,Asia
+2002,Singapore,209030,Departure,Asia
+2002,Malaysia,207640,Departure,Asia
+2002,Germany,166550,Departure,Europe
+2002,Indonesia,122960,Departure,Asia
+2003,New Zealand,1004110,Departure,Oceania
+2003,United Kingdom,886630,Departure,Europe
+2003,South Korea,644700,Departure,Asia
+2003,India,435870,Departure,Asia
+2003,Japan,223280,Departure,Asia
+2003,China,216110,Departure,Asia
+2003,Malaysia,205540,Departure,Asia
+2003,Singapore,192690,Departure,Asia
+2003,Germany,163500,Departure,Europe
+2003,Indonesia,123960,Departure,Asia
+2004,New Zealand,1230530,Departure,Oceania
+2004,United Kingdom,908420,Departure,Europe
+2004,South Korea,726590,Departure,Asia
+2004,India,446610,Departure,Asia
+2004,China,296680,Departure,Asia
+2004,Japan,229300,Departure,Asia
+2004,Malaysia,225200,Departure,Asia
+2004,Singapore,201810,Departure,Asia
+2004,Germany,167750,Departure,Europe
+2004,Indonesia,121760,Departure,Asia
+2005,New Zealand,1295820,Departure,Oceania
+2005,United Kingdom,947060,Departure,Europe
+2005,South Korea,705010,Departure,Asia
+2005,India,459990,Departure,Asia
+2005,China,332100,Departure,Asia
+2005,Japan,267940,Departure,Asia
+2005,Malaysia,225530,Departure,Asia
+2005,Singapore,207930,Departure,Asia
+2005,Germany,178850,Departure,Europe
+2005,Canada,124050,Departure,North America
+2006,New Zealand,1280980,Departure,Oceania
+2006,United Kingdom,940390,Departure,Europe
+2006,South Korea,671650,Departure,Asia
+2006,India,474730,Departure,Asia
+2006,China,358280,Departure,Asia
+2006,Japan,283660,Departure,Asia
+2006,Malaysia,209910,Departure,Asia
+2006,Singapore,186010,Departure,Asia
+2006,Germany,180980,Departure,Europe
+2006,United States,134340,Departure,North America
+2007,New Zealand,1364470,Departure,Oceania
+2007,United Kingdom,960720,Departure,Europe
+2007,South Korea,597340,Departure,Asia
+2007,India,479700,Departure,Asia
+2007,China,417020,Departure,Asia
+2007,Japan,279550,Departure,Asia
+2007,Malaysia,220860,Departure,Asia
+2007,Singapore,191590,Departure,Asia
+2007,Germany,188590,Departure,Europe
+2007,United States,152260,Departure,North America
+2008,New Zealand,1370900,Departure,Oceania
+2008,United Kingdom,920530,Departure,Europe
+2008,South Korea,485240,Departure,Asia
+2008,India,477610,Departure,Asia
+2008,China,431440,Departure,Asia
+2008,Japan,246510,Departure,Asia
+2008,Malaysia,238550,Departure,Asia
+2008,Germany,197930,Departure,Europe
+2008,Singapore,191400,Departure,Asia
+2008,United States,187190,Departure,North America
+2009,New Zealand,1413470,Departure,Oceania
+2009,United Kingdom,915330,Departure,Europe
+2009,India,499680,Departure,Asia
+2009,China,465490,Departure,Asia
+2009,South Korea,382310,Departure,Asia
+2009,Malaysia,290690,Departure,Asia
+2009,United States,220280,Departure,North America
+2009,Japan,212760,Departure,Asia
+2009,Germany,202700,Departure,Europe
+2009,Singapore,197330,Departure,Asia
+2010,New Zealand,1470770,Departure,Oceania
+2010,United Kingdom,911590,Departure,Europe
+2010,China,566120,Departure,Asia
+2010,India,501250,Departure,Asia
+2010,South Korea,429240,Departure,Asia
+2010,Malaysia,320750,Departure,Asia
+2010,Japan,251820,Departure,Asia
+2010,United States,245850,Departure,North America
+2010,Singapore,212980,Departure,Asia
+2010,Germany,210540,Departure,Europe
+2011,New Zealand,1535570,Departure,Oceania
+2011,United Kingdom,898430,Departure,Europe
+2011,China,672760,Departure,Asia
+2011,India,491290,Departure,Asia
+2011,South Korea,361520,Departure,Asia
+2011,Malaysia,325690,Departure,Asia
+2011,United States,259940,Departure,North America
+2011,Japan,231520,Departure,Asia
+2011,Singapore,212020,Departure,Asia
+2011,Germany,204980,Departure,Europe
+2012,New Zealand,1620940,Departure,Oceania
+2012,United Kingdom,881260,Departure,Europe
+2012,China,765320,Departure,Asia
+2012,India,508780,Departure,Asia
+2012,South Korea,389250,Departure,Asia
+2012,Malaysia,350240,Departure,Asia
+2012,United States,290170,Departure,North America
+2012,Singapore,233630,Departure,Asia
+2012,Japan,231710,Departure,Asia
+2012,Germany,204710,Departure,Europe
+2013,New Zealand,1666780,Departure,Oceania
+2013,United Kingdom,934360,Departure,Europe
+2013,China,876070,Departure,Asia
+2013,India,534460,Departure,Asia
+2013,Malaysia,389790,Departure,Asia
+2013,South Korea,367030,Departure,Asia
+2013,United States,307210,Departure,North America
+2013,Singapore,265740,Departure,Asia
+2013,Japan,231740,Departure,Asia
+2013,Germany,214360,Departure,Europe
+2014,New Zealand,1726190,Departure,Oceania
+2014,China,1013390,Departure,Asia
+2014,United Kingdom,945360,Departure,Europe
+2014,India,567170,Departure,Asia
+2014,Malaysia,444940,Departure,Asia
+2014,South Korea,374370,Departure,Asia
+2014,United States,333010,Departure,North America
+2014,Singapore,293030,Departure,Asia
+2014,Japan,240710,Departure,Asia
+2014,Germany,229970,Departure,Europe
+2015,New Zealand,1787330,Departure,Oceania
+2015,China,1238570,Departure,Asia
+2015,United Kingdom,955280,Departure,Europe
+2015,India,600170,Departure,Asia
+2015,Malaysia,463100,Departure,Asia
+2015,South Korea,380970,Departure,Asia
+2015,United States,380820,Departure,North America
+2015,Singapore,310870,Departure,Asia
+2015,Japan,252360,Departure,Asia
+2015,Germany,231820,Departure,Europe
+2016,New Zealand,1827720,Departure,Oceania
+2016,China,1444430,Departure,Asia
+2016,United Kingdom,996220,Departure,Europe
+2016,India,674930,Departure,Asia
+2016,Malaysia,526790,Departure,Asia
+2016,South Korea,462260,Departure,Asia
+2016,United States,422150,Departure,North America
+2016,Singapore,351610,Departure,Asia
+2016,Japan,300260,Departure,Asia
+2016,Germany,247130,Departure,Europe
+2017,New Zealand,1870750,Departure,Oceania
+2017,China,1647240,Departure,Asia
+2017,United Kingdom,1022580,Departure,Europe
+2017,India,726930,Departure,Asia
+2017,Malaysia,533080,Departure,Asia
+2017,United States,481000,Departure,North America
+2017,South Korea,479240,Departure,Asia
+2017,Singapore,348550,Departure,Asia
+2017,Japan,337440,Departure,Asia
+2017,Germany,257360,Departure,Europe
+2018,New Zealand,1887040,Departure,Oceania
+2018,China,1785780,Departure,Asia
+2018,United Kingdom,1025180,Departure,Europe
+2018,India,791500,Departure,Asia
+2018,United States,562640,Departure,North America
+2018,Malaysia,523320,Departure,Asia
+2018,South Korea,501770,Departure,Asia
+2018,Singapore,351370,Departure,Asia
+2018,Japan,346000,Departure,Asia
+2018,Germany,260840,Departure,Europe
+2019,New Zealand,1928520,Departure,Oceania
+2019,China,1808450,Departure,Asia
+2019,United Kingdom,991990,Departure,Europe
+2019,India,862180,Departure,Asia
+2019,United States,622660,Departure,North America
+2019,South Korea,522310,Departure,Asia
+2019,Malaysia,515690,Departure,Asia
+2019,Singapore,367970,Departure,Asia
+2019,Japan,354690,Departure,Asia
+2019,Indonesia,269960,Departure,Asia
+2020,New Zealand,415480,Departure,Oceania
+2020,United Kingdom,333690,Departure,Europe
+2020,China,317310,Departure,Asia
+2020,India,243070,Departure,Asia
+2020,United States,186170,Departure,North America
+2020,South Korea,123250,Departure,Asia
+2020,Germany,96870,Departure,Europe
+2020,Japan,91520,Departure,Asia
+2020,Malaysia,81340,Departure,Asia
+2020,Vietnam,79900,Departure,Asia
+2021,New Zealand,169710,Departure,Oceania
+2021,China,57370,Departure,Asia
+2021,United States,47060,Departure,North America
+2021,United Kingdom,27420,Departure,Europe
+2021,India,20140,Departure,Asia
+2021,Singapore,9220,Departure,Asia
+2021,Malaysia,7820,Departure,Asia
+2021,Japan,7760,Departure,Asia
+2021,Pakistan,7170,Departure,Asia
+2021,Vietnam,7000,Departure,Asia
+2022,New Zealand,987390,Departure,Oceania
+2022,United States,425460,Departure,North America
+2022,United Kingdom,420120,Departure,Europe
+2022,India,311100,Departure,Asia
+2022,Singapore,240960,Departure,Asia
+2022,Malaysia,145200,Departure,Asia
+2022,China,127760,Departure,Asia
+2022,Indonesia,108960,Departure,Asia
+2022,France,96700,Departure,Europe
+2022,Canada,93910,Departure,North America
+2023,New Zealand,1679950,Departure,Oceania
+2023,China,865300,Departure,Asia
+2023,United Kingdom,739310,Departure,Europe
+2023,India,661570,Departure,Asia
+2023,United States,640210,Departure,North America
+2023,Japan,329610,Departure,Asia
+2023,South Korea,313730,Departure,Asia
+2023,Singapore,287250,Departure,Asia
+2023,Malaysia,277860,Departure,Asia
+2023,Indonesia,224550,Departure,Asia
+2024,New Zealand,1900310,Departure,Oceania
+2024,China,1314290,Departure,Asia
+2024,United Kingdom,805370,Departure,Europe
+2024,India,737920,Departure,Asia
+2024,United States,724610,Departure,North America
+2024,South Korea,437560,Departure,Asia
+2024,Japan,437000,Departure,Asia
+2024,Singapore,343430,Departure,Asia
+2024,Malaysia,323420,Departure,Asia
+2024,Indonesia,273900,Departure,Asia
+2025,New Zealand,2019950,Departure,Oceania
+2025,China,1486490,Departure,Asia
+2025,United Kingdom,913100,Departure,Europe
+2025,India,774600,Departure,Asia
+2025,United States,773680,Departure,North America
+2025,South Korea,468560,Departure,Asia
+2025,Japan,462020,Departure,Asia
+2025,Singapore,367090,Departure,Asia
+2025,Malaysia,339820,Departure,Asia
+2025,Indonesia,297240,Departure,Asia

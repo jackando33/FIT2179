@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Australian International Tourism Dashboard</title>
+
+  <!-- Vega -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <!-- PureCSS -->
+  <link rel="stylesheet"
+    href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
+
+  <link rel="stylesheet"
+    href="https://unpkg.com/purecss@2.0.6/build/grids-responsive-min.css">
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <div class="page-container">
+
+    <header class="hero">
+
+      <div class="overlay"></div>
+
+      <div class="hero-content">
+
+        <h1>International Tourism in Australia</h1>
+
+        <p class="subtitle">
+          Exploring Australia's tourism trends,
+          arrivals and departures from 2000–2025
+        </p>
+
+        <p class="author">
+          <strong>Author:</strong> Jack Anderson
+        </p>
+
+      </div>
+
+    </header>
+    <section class="text-section-header">
+      <h2>Australian Tourism (2000-2025)</h2>
+    </section>
+    <div class="maps-grid">
+      <div class="map-text-box">
+
+        <p>
+          This dashboard visualises tourism to and from Australia 
+          between 2000 and 2025, highlighting international arrivals, 
+          outbound travel and Australia’s changing connections with 
+          countries around the world. Through interactive maps and 
+          charts, visitors can explore how tourism patterns have 
+          shifted over time and compare movement across countries, 
+          regions and seasons.
+        </p>
+
+      </div>
+      <div class="map-text-box"> 
+
+        <p>
+          Together, these visualisations reveal Australia’s strongest 
+          tourism relationships and broader global travel trends over 
+          the past twenty-five years. From long-term growth and 
+          seasonal patterns to country-level comparisons and travel 
+          flows, the dashboard provides a clear overview of 
+          Australia’s place within the global tourism network.
+        </p>
+
+      </div>
+    </div>
+
+    <section class="section-header">
+      <h2>1. Australia Tourism at a Glance</h2>
+    </section>
+
+    <div class="chart-container">
+      <div class="chart-wrapper">
+        <div id="travel_chart"></div>
+      </div>
+    </div>
+    <div class="maps-grid">
+
+      <div class="map-text-box">
+
+        <p> 
+          Australia’s international tourism grew steadily between 
+          2000 and 2025, with both arrivals and departures showing 
+          a clear positive trend. This consistent growth 
+          highlights Australia’s increasing connection with global 
+          tourism, as more visitors are arriving in Australia and more 
+          Australians are
+        </p>
+
+      </div>
+      <div class="map-text-box">
+
+        <p>
+          travelling overseas. This trend was interrupted in 2020 during the 
+          COVID-19 pandemic, when international travel 
+          dropped sharply. Following the reopening of borders, 
+          tourism rebounded strongly before continuing on a 
+          similar long-term growth trend through to 2025.
+        </p>
+
+      </div>
+    </div>
+
+
+    <section class="section-header">
+  <h2>2. Where Tourists Come From</h2>
+</section>
+
+<div class="maps-grid">
+
+  <div class="chart-container">
+  <div class="chart-wrapper">
+    <div id="world_map"></div>
+  </div>
+  </div>
+  <div class="chart-container">
+  <div class="chart-wrapper">
+    <div id="flow_map"></div>
+  </div>
+  </div>
+
+  <div class="map-text-box">
+    <p>
+      This choropleth map highlights Australia’s international 
+      tourism connections by showing the total number of arrivals 
+      and departures per 100,000 residents for each country 
+      between 2000 and 2025. Grouping countries into colour 
+      ranges makes it easier to compare tourism intensity relative 
+      to population size. Australia remains the darkest throughout 
+      the period, reflecting consistently high international travel. 
+      A clear shift occurs in 2020 and 2021 during the COVID-19 
+      pandemic, when most countries become lighter as global travel 
+      declined, before strengthening again when borders reopened. 
+      Following this recovery, Canada becomes one of Australia’s 
+      strongest tourism connections in the post-pandemic years.
+    </p>
+  </div>
+
+  <div class="map-text-box">
+    <p>
+      This flow map visualises Australia’s top 50 international 
+      tourism connections between 2000 and 2025. Arrivals and 
+      departures can be compared across each year using the 
+      interactive controls. Line thickness represents traveller 
+      volume, while colour coding highlights tourism connections 
+      across each continent. New Zealand, the United Kingdom, 
+      the United States and Brazil remain some of Australia’s 
+      strongest tourism links throughout the period. Across Asia, 
+      travel is initially strongest with Japan before shifting 
+      toward China in later years. A noticeable decline appears in 
+      2021 during the COVID-19 pandemic before tourism flows strengthen 
+      again.
+    </p>
+  </div>
+
+  <div class="chart-wrapper next-chart-wrap">
+    <div id="top10_chart"></div>
+  </div>
+
+  <div class="map-text-box centered">
+    <p>
+      This animated bar chart highlights Australia’s top 10 
+      international tourism partners between 2000 and 2025. 
+      Use the play button to view how tourism volumes grow and 
+      rankings shift over time, with arrivals and departures 
+      able to be explored across each year. The changing rankings 
+      reveal both long-term tourism relationships and emerging 
+      travel markets. New Zealand remains Australia’s leading 
+      tourism connection throughout the full period, while the 
+      United Kingdom stays near the top despite gradually moving 
+      from second to third. Across Asia, Japan begins as one of 
+      Australia’s strongest tourism markets before being overtaken 
+      by China, while India also rises into the top rankings in 
+      later years.
+    </p>
+  </div>
+
+</div>
+
+<section class="section-header">
+  <h2>3. How Tourism Changes Over Time</h2>
+</section>
+  <div class="maps-grid">
+
+    <div class="chart-wrapper">
+      <div id="streamgraph"></div>
+    </div>
+
+    <div class="map-text-box centered">
+      <p>
+        This streamgraph shows international tourism to and from 
+        Australia between 2000 and 2025, grouped by continent and 
+        excluding Australian citizens to better highlight overseas 
+        visitor patterns. Colour coding by continent reveals that 
+        most tourism originates from Asia, followed by Europe and 
+        then Oceania, showing the dominant global sources of travel 
+        into Australia over time. The overall pattern peaks in 2019, 
+        followed by a sharp narrowing in 2021 during the COVID-19 
+        pandemic, before expanding again as international travel recovers 
+        toward 2025.
+      </p>
+    </div>
+
+  </div>
+  <div class="maps-grid">
+
+    <div class="map-text-box centered">
+      <p>
+       This bubble chart compares international arrivals and departures 
+       between Australia and individual countries from 2000 to 2025, 
+       with each bubble representing a country. Both axes use a 
+       logarithmic scale, bubble size reflects population, and colours 
+       represent continents, with filters allowing users to explore 
+       countries in more detail. The dashed diagonal line shows where 
+       arrivals and departures are equal, while the solid trendline 
+       highlights the overall tourism trend each year. Countries are 
+       more dispersed in the early years, and there also being a clear 
+       disruption during the COVID-19 pandemic in 2021. By 2025, the 
+       bubbles align closely along the linear reference line, showing 
+       stronger and more balanced tourism connections between Australia 
+       and other countries.
+      </p>
+    </div>
+
+    <div class="chart-wrapper">
+      <div id="bubble_chart"></div>
+    </div>
+
+  </div>
+
+  <section class="section-header">
+    <h2>4. Tourism Across Australia</h2>
+  </section>
+  <div class="maps-grid">
+
+    <div class="chart-wrapper">
+      <div id="australia_choropleth"></div>
+    </div>
+
+    <div class="map-text-box centered">
+      <p>
+        This visualisation explores tourism across Australia through 
+        a proportional symbol map and linked area chart between 2000 
+        and 2025. The map highlights each state and territory using 
+        scaled circles, with four size groups representing the magnitude 
+        of arrivals or departures. The year slider and tourism type 
+        controls allow arrivals and departures to be compared across 
+        different years, while the circles grow or shrink to reflect 
+        changing tourism activity across Australia. This provides a 
+        clear comparison of how tourism is distributed between states 
+        and territories over time.
+      </p>
+      <br>
+      <p>
+        The area chart beneath the map complements this by showing the 
+        contribution each state and territory makes to Australia’s 
+        overall tourism total. Because both charts update together 
+        using the shared year slider, regional tourism patterns can 
+        be compared while also showing how each state contributes to 
+        national tourism trends. Together, the two visualisations 
+        highlight the changing distribution of tourism across Australia 
+        over the past twenty-five years.
+      </p>
+    </div>
+
+  </div>
+  <div class="maps-grid">
+  <div class="map-text-box centered">
+    <p>
+      This seasonal heatmap highlights monthly tourism patterns to and 
+      from Australia between 2000 and 2025, with arrivals and departures 
+      able to be compared using the tourism type controls. Darker colours 
+      represent higher tourism activity, revealing both long-term growth 
+      and recurring seasonal travel patterns. Across the full period, the 
+      bands gradually become darker from 2000 to 2025, indicating an 
+      overall increase in international tourism. Within each year, the 
+      darkest bands consistently appear in similar months, showing 
+      that Australia’s tourism activity follows clear seasonal cycles. 
+      For arrivals, tourism remains strongest in January, July, October 
+      and December, while departures are highest in January, April, 
+      and Decemeber. A noticeable lighter band appears across 2020 and 
+      2021 during the COVID-19 pandemic, reflecting the sharp decline 
+      in international travel. Tourism activity strengthens again after 
+      border reopening, returning to darker and more consistent 
+      seasonal trends by 2025.
+    </p>
+  </div>
+
+  <div class="chart-wrapper">
+    <div id="heatmap"></div>
+  </div>
+
+</div>
+<section class="section-header">
+  <h2>5. Key Tourism Insights</h2>
+</section>
+
+<div class="maps-grid">
+
+  <div class="chart-wrapper">
+    <div id="tree_map"></div>
+  </div>
+
+  <div class="map-text-box centered">
+    <p>
+      This treemap highlights the top 70 countries connected with 
+      Australia in 2025, based on total tourism activity combining 
+      arrivals and departures. Each rectangle is sized by tourism 
+      volume and colour coded by continent, with the option to filter 
+      the treemap by continent for clearer regional comparison. 
+      Australia contributes the largest share of total tourism 
+      activity, showing strong demand for overseas travel by Australians. 
+      New Zealand stands out as Australia’s strongest international 
+      tourism connection. Across Asia, countries such as China, India 
+      and Japan contribute a large share of tourism activity, while the 
+      United Kingdom and the United States remain major long-term 
+      travel partners. Together, the treemap provides a clear snapshot 
+      of Australia’s strongest tourism relationships in 2025 and how 
+      they are distributed across the world.
+    </p>
+  </div>
+
+</div>
+
+<div class="full-width-chart">
+  <div class="chart-wrapper">
+    <div id="diverging_chart"></div>
+  </div>
+</div>
+
+<!-- Row 3 -->
+<div class="maps-grid">
+
+  <div class="map-text-box">
+    <p>
+      This diverging bar chart compares Australia’s top 10 tourism 
+      partners in 2025, showing departures to the left and arrivals 
+      to the right for each country. The year slider allows tourism 
+      volumes to be explored across time, while the mirrored layout 
+      makes it easy to compare inbound and outbound travel for each 
+      country. New Zealand and China remain 
+    </p>
+  </div>
+
+  <div class="map-text-box">
+    <p>
+      Australia’s strongest tourism 
+      connections, with consistently high tourism volumes throughout 
+      the period. Several countries also show clear differences 
+      between arrivals and departures, highlighting changes in travel 
+      demand and Australia’s strongest international tourism relationships 
+      between 2000 and 2025.
+    </p>
+  </div>
+
+</div>
+<section class="text-section-header">
+  <h2>Conclusion</h2>
+</section>
+<div class="maps-grid">
+
+  <div class="map-text-box">
+    <p>
+      Australia’s tourism patterns between 2000 and 2025 highlight 
+      the country’s strong and evolving connection with the rest 
+      of the world. International tourism followed a steady 
+      long-term upward trend, interrupted only by the sharp 
+      decline during the COVID-19 pandemic before recovering 
+      strongly by 2025. New Zealand remained Australia’s most consistent 
+      tourism partner throughout the period, while the United Kingdom 
+      and United States remained major long-term travel connections. 
+      Across Asia, tourism also
+    </p>
+  </div>
+
+  <div class="map-text-box">
+    <p>
+      shifted over time, with Japan strongest 
+      in the early years before China and India became more prominent.
+      Together, these visualisations show clear seasonal peaks in December 
+      and January, strong tourism concentration across Australia’s 
+      major states, and lasting international connections across 
+      Oceania, Asia and Europe. Overall, the dashboard highlights 
+      Australia’s position as a major destination and travel hub within 
+      the global tourism network over the past twenty-five years.
+    </p>
+  </div>
+
+</div>
+
+<section class="h2">
+  <h2>Sources</h2>
+</section>
+
+<div class="maps-grid">
+
+  <div class="map-text-box">
+
+    <p>
+      Australian Bureau of Statistics:
+      <a
+        href = "https://www.abs.gov.au/statistics/industry/tourism-and-transport/overseas-arrivals-and-departures-australia/mar-2026"
+        target = "_blank"
+        rel = "noopener noreferrer">
+        ABS Toursim Dashboard
+      </a>
+      <br>
+      FIT3179 Teaching Team: 
+      <a
+      href = "https://github.com/FIT3179/Vega-Lite"
+      targe = "_blank",
+      rel = "noopener noreferrer">
+      FIT3179 Github Vega-lite account
+      </a>
+    </p>
+
+  </div>
+
+</div>
+
+</div>
+
+<script src="vega_lite_vis.js"></script>
+
+</body>
+</html>

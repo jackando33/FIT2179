@@ -1,0 +1,200 @@
+/* RESET */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: white;
+  overflow-x: hidden;
+}
+
+.page-container {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding-left: 0.75cm;
+  padding-right: 0.75cm;
+  padding-bottom: 2rem;
+
+  background: #edf6f5;
+}
+
+.hero {
+  position: relative;
+
+  width: calc(100% + 1.5cm);
+
+  margin-left: -0.75cm;
+  margin-right: -0.75cm;
+
+  height: 40vh;
+
+  background-image: url("images/banner.jpg");
+  background-size: cover;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+
+  color: white;
+
+  padding-left: 1%;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: 4.5rem;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.author {
+  font-size: 1rem;
+}
+
+.text-section-header {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.text-section-header h2 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.section-header::before,
+.section-header::after {
+  content: "";
+  flex: 1;
+  border-top: 2px dashed #999;
+}
+
+.section-header h2 {
+  margin: 0 1.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.chart-wrapper {
+  width: 100%;
+  min-width: 0;
+
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 1.25rem;
+
+  overflow: visible;
+}
+
+#travel_chart {
+  width: 100%;
+  max-width: 1000px;
+  margin-left: 0;
+}
+
+#travel_chart .vega-embed,
+#travel_chart .vega-embed > div {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.maps-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+
+  gap: 24px;
+
+  width: 100%;
+  align-items: start;
+
+  margin-bottom: 2rem;
+}
+
+.map-text-box.centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+#world_map,
+#flow_map {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+#world_map > *,
+#flow_map > * {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.map-text-box {
+  width: 95%;
+  margin-top: 0.5rem;
+
+  text-align: justify;
+  line-height: 1.8;
+}
+
+.next-chart-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 20px; 
+}
+
+#next_chart {
+  width: 100%;
+}
+#streamgraph,
+#heatmap,
+#bubble_chart,
+#diverging_chart{
+  width: 100%;
+}
+#australia_choropleth {
+  width: 55%
+}
+
+.full-width-chart {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.full-width-chart .chart-wrapper {
+  width: 100%;
+}

@@ -1,0 +1,363 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "width": "container",
+  "height": 300,
+
+  "title": {
+    "text": "Global Tourism Comparison",
+    "fontSize": 24
+  },
+  
+
+  "data": {
+    "url": "data/tourism_bubble.csv"
+  },
+
+  "params": [
+    {
+      "name": "Year_selection",
+      "value": 2019,
+
+      "bind": {
+        "input": "range",
+        "min": 2000,
+        "max": 2025,
+        "step": 1,
+        "name": "Year: "
+      }
+    },
+
+    {
+      "name": "Population_Above",
+      "value": 0,
+
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 100000000,
+        "step": 1000000,
+        "name": "Minimum Country Population: "
+      }
+    },
+
+    {
+      "name": "Continent_selection",
+
+      "bind": {
+        "input": "select",
+
+        "options": [
+          null,
+          "Africa",
+          "Asia",
+          "Europe",
+          "North America",
+          "South America",
+          "Oceania"
+        ],
+
+        "labels": [
+          "Show All",
+          "Africa",
+          "Asia",
+          "Europe",
+          "North America",
+          "South America",
+          "Oceania"
+        ],
+
+        "name": "Continent Selection: "
+      }
+    }
+  ],
+
+  "transform": [
+    {
+      "filter": "datum.Arrivals > 0"
+    },
+
+    {
+      "filter": "datum.Departures > 0"
+    },
+
+    {
+      "filter": "datum.Population > Population_Above"
+    },
+
+    {
+      "filter": "datum.Year == Year_selection"
+    },
+
+    {
+      "filter": "Continent_selection == null || datum.Continent == Continent_selection"
+    }
+  ],
+
+  "encoding": {
+    "x": {
+      "field": "Arrivals",
+      "type": "quantitative",
+      "title": "International Arrivals (log10 scale)",
+
+      "axis": {
+        "tickCount": 7,
+        "format": ".2s",
+        "titleFontSize": 14,
+        "labelFontSize": 10
+      },
+
+      "scale": {
+        "type": "log",
+        "domain": [1, 10000000]
+      }
+    },
+
+    "y": {
+      "field": "Departures",
+      "type": "quantitative",
+      "title": "International Departures (log10 scale)",
+
+      "axis": {
+        "tickCount": 6,
+        "format": ".2s",
+        "titleFontSize": 14,
+        "labelFontSize": 10
+      },
+
+      "scale": {
+        "type": "log",
+        "domain": [1, 10000000]
+      }
+    }
+  },
+
+  "layer": [
+    {
+  "transform": [
+    {
+      "calculate": "log(datum.Arrivals)/log(10)",
+      "as": "log_arrivals"
+    },
+    {
+      "calculate": "log(datum.Departures)/log(10)",
+      "as": "log_departures"
+    },
+    {
+      "regression": "log_departures",
+      "on": "log_arrivals",
+      "extent": [0, 7]
+    },
+    {
+      "calculate": "pow(10, datum.log_arrivals)",
+      "as": "Arrivals_fit"
+    },
+    {
+      "calculate": "pow(10, datum.log_departures)",
+      "as": "Departures_fit"
+    }
+  ],
+
+  "mark": {
+    "type": "line",
+    "color": "black",
+    "strokeWidth": 2,
+    "opacity": 0.25
+  },
+
+  "encoding": {
+    "x": {
+      "field": "Arrivals_fit",
+      "type": "quantitative"
+    },
+
+    "y": {
+      "field": "Departures_fit",
+      "type": "quantitative"
+    }
+  }
+},
+{
+  "data": {
+    "values": [
+      { "x": 1, "y": 1 },
+      { "x": 10000000, "y": 10000000 }
+    ]
+  },
+
+  "mark": {
+    "type": "line",
+    "color": "black",
+    "strokeWidth": 1.5,
+    "opacity": 0.15,
+    "strokeDash": [5,5]
+  },
+
+  "encoding": {
+    "x": {
+      "field": "x",
+      "type": "quantitative"
+    },
+
+    "y": {
+      "field": "y",
+      "type": "quantitative"
+    }
+  }
+},
+    {
+      "mark": "circle",
+
+      "encoding": {
+       "size": {
+        "field": "Population",
+        "type": "quantitative",
+
+        "scale": {
+          "type": "threshold",
+
+          "domain": [
+            1000000,
+            10000000,
+            50000000,
+            200000000,
+            500000000
+          ],
+
+          "range": [
+            20,
+            70,
+            150,
+            220,
+            320,
+            520
+          ]
+        },
+
+        "legend": {
+          "title": "Country Population",
+
+          "values": [
+            1000000,
+            10000000,
+            50000000,
+            200000000,
+            500000000
+          ],
+
+          "format": ".1s",
+          "titleFontSize": 14,
+          "labelFontSize": 10
+        }
+      },
+
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+
+          "scale": {
+            "domain": [
+              "Africa",
+              "Asia",
+              "Europe",
+              "North America",
+              "South America",
+              "Oceania"
+            ],
+
+            "range": [
+              "#a6d854",
+              "#fc8d62",
+              "#8da0cb",
+              "#e78ac3",
+              "#ffd92f",
+              "#66c2a5"
+            ]
+          }
+        },
+
+        "opacity": {
+          "value": 0.6
+        },
+
+        "tooltip": [
+          {
+            "field": "Continent",
+            "type": "nominal"
+          },
+
+          {
+            "field": "Country",
+            "type": "nominal"
+          },
+
+          {
+            "field": "Year",
+            "type": "ordinal"
+          },
+
+          {
+            "field": "Arrivals",
+            "type": "quantitative",
+            "format": ".2s"
+          },
+
+          {
+            "field": "Departures",
+            "type": "quantitative",
+            "format": ".2s"
+          },
+
+          {
+            "field": "Population",
+            "type": "quantitative",
+            "format": ".2s"
+          }
+        ]
+      }
+    },
+
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+
+      "encoding": {
+        "text": {
+          "field": "Country",
+          "type": "nominal"
+        },
+
+        "color": {
+          "value": "black"
+        },
+
+        "opacity": {
+          "condition": {
+            "test": "datum.Country == 'China' || datum.Country == 'Australia' || datum.Country == 'New Zealand' || datum.Country == 'United States' || datum.Country == 'United Kingdom'",
+            "value": 1
+          },
+
+          "value": 0
+        }
+      }
+    }
+  ],
+
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+
+    "axis": {
+      "grid": true,
+      "labelFontSize": 10,
+      "titleFontSize": 14
+    }
+  }
+}
