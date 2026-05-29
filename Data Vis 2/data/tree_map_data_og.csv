@@ -1,0 +1,83 @@
+id,name,parent,count,type
+1,root,,,
+2,Asia Arrival,1,,Arrival
+3,Europe Arrival,1,,Arrival
+4,Oceania Arrival,1,,Arrival
+5,North America Arrival,1,,Arrival
+6,South America Arrival,1,,Arrival
+7,Africa Arrival,1,,Arrival
+8,Asia Departure,1,,Departure
+9,Europe Departure,1,,Departure
+10,Oceania Departure,1,,Departure
+11,North America Departure,1,,Departure
+12,South America Departure,1,,Departure
+13,Africa Departure,1,,Departure
+14,Australia,4,22113480,Arrival
+15,New Zealand,4,4069660,Arrival
+16,China,2,2988340,Arrival
+17,United Kingdom,3,1867150,Arrival
+18,India,2,1597270,Arrival
+19,United States,5,1519860,Arrival
+20,South Korea,2,934540,Arrival
+21,Japan,2,926780,Arrival
+22,Singapore,2,734030,Arrival
+23,Malaysia,2,678860,Arrival
+24,Indonesia,2,601470,Arrival
+25,Philippines,2,549690,Arrival
+26,Hong Kong,2,469050,Arrival
+27,France,3,450570,Arrival
+28,Vietnam,2,447160,Arrival
+29,Taiwan,2,432590,Arrival
+30,Germany,3,425440,Arrival
+31,Canada,5,395220,Arrival
+32,Ireland,3,297300,Arrival
+33,Nepal,2,245320,Arrival
+34,Italy,3,224000,Arrival
+35,Thailand,2,217050,Arrival
+36,Sri Lanka,2,194570,Arrival
+37,Netherlands,3,158110,Arrival
+38,Fiji,4,143680,Arrival
+39,South Africa,7,139800,Arrival
+40,Brazil,6,135610,Arrival
+41,Pakistan,2,125750,Arrival
+42,Spain,3,112170,Arrival
+43,Bangladesh,2,98870,Arrival
+44,Colombia,6,81380,Arrival
+45,Switzerland,3,77550,Arrival
+46,Sweden,3,71160,Arrival
+47,Chile,6,67610,Arrival
+48,Poland,3,59620,Arrival
+49,Denmark,3,58570,Arrival
+50,Argentina,6,53000,Arrival
+51,Cambodia,2,51150,Arrival
+52,Belgium,3,48710,Arrival
+53,Iran,2,46040,Arrival
+54,Russia,2,44280,Arrival
+55,Norway,3,42860,Arrival
+56,Austria,3,42370,Arrival
+57,Portugal,3,37880,Arrival
+58,Mexico,5,36790,Arrival
+59,Afghanistan,2,34770,Arrival
+60,Tonga,4,32840,Arrival
+61,Mongolia,2,29750,Arrival
+62,Turkey,2,28990,Arrival
+63,Vanuatu,4,28810,Arrival
+64,Israel,2,27250,Arrival
+65,Kenya,7,27030,Arrival
+66,Finland,3,25490,Arrival
+67,Bhutan,2,24940,Arrival
+68,Saudi Arabia,2,24200,Arrival
+69,Solomon Islands,4,23540,Arrival
+70,Czech Republic,3,21750,Arrival
+71,Mauritius,7,21100,Arrival
+72,Zimbabwe,7,19720,Arrival
+73,Timor-Leste,2,18900,Arrival
+74,Peru,6,18720,Arrival
+75,Myanmar,2,18150,Arrival
+76,Lebanon,2,17770,Arrival
+77,Hungary,3,17200,Arrival
+78,Egypt,7,16620,Arrival
+79,Samoa,4,16470,Arrival
+80,Greece,3,15300,Arrival
+81,Nigeria,7,14250,Arrival
+82,Nauru,4,14010,Arrival
